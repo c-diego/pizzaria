@@ -63,12 +63,14 @@ querySelector('.pizzaInfo--qtmenos').addEventListener('click', () => {
   if (modalAmount > 1) {
     modalAmount--;
     querySelector('.pizzaInfo--qt').innerHTML = modalAmount;
+    querySelector('.pizzaInfo--actualPrice').innerHTML = `R$ ${(pizzaJson[modalKey].price * modalAmount).toFixed(2)}`;
   }
 });
 
 querySelector('.pizzaInfo--qtmais').addEventListener('click', () => {
   modalAmount++;
   querySelector('.pizzaInfo--qt').innerHTML = modalAmount;
+  querySelector('.pizzaInfo--actualPrice').innerHTML = `R$ ${(pizzaJson[modalKey].price * modalAmount).toFixed(2)}`;
 });
 
 querySelectorAll('.pizzaInfo--size').forEach((size) => {
@@ -79,10 +81,9 @@ querySelectorAll('.pizzaInfo--size').forEach((size) => {
 });
 
 querySelector('.pizzaInfo--addButton').addEventListener('click', () => {
+
   let size = parseInt(querySelector('.pizzaInfo--size.selected').getAttribute('data-key'));
-
   let identifier = pizzaJson[modalKey].id + '@' + size;
-
   let key = cart.findIndex(item => item.identifier === identifier);
 
   if (key > -1) {
